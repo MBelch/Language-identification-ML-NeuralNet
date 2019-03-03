@@ -24,13 +24,14 @@ def fileCleaning(fileDirectory,langueNumero):
             text = text.replace(ch, " ")
             
         
-    #en elimine les nombre du text:
+    #on elimine les nombre du text:
     for e in string.digits:
         text = text.replace(e," ")
         
    
         
     #ecrire le text nettoyé dans la 'Directory' mentionnée
+    #!!!!!!!!! Don't forget to change the path to a path of your choice.!!!!!!!!!!!!
     filename = 'D:/ENSIAS_M/2ème année/ProjetIA/texte netoye/'+langueNumero+'.txt'
     file = open(filename , 'wt') 
     for e in text:
@@ -55,9 +56,9 @@ def ouvrirTextNetoye(path):
     return text
 
 
-#fonction pour attribuer a chaque phrases l'indice de la langue:
+
 def listSetenceEtiquete(listSentence, indiceLangue):
-    
+    #fonction pour attribuer a chaque phrases l'indice de la langue
     n = len(listSentence)
     listSentence = np.array(listSentence)
     listSentence = listSentence.reshape(n,1)
@@ -69,11 +70,14 @@ def listSetenceEtiquete(listSentence, indiceLangue):
     listLangueEtiquete = np.hstack((listSentence, listIndex))
     return listLangueEtiquete
 
-#fonction pour melanger les phrases dans notre matrice:
 def melangerLangues(langues):
+    
+    #fonction pour melanger les phrases dans notre matrice:
     np.random.shuffle(langues)
     return langues
 
+
+#The code below it's just a test of TfidfVectorizer and how it works. There's no need to use it
 #fonction des grams:
 '''
 from sklearn.feature_extraction.text import TfidfVectorizer
