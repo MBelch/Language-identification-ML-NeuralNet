@@ -7,6 +7,6 @@ http://www.statmt.org/europarl/
 
 We only used like it's said before French, Italian, Portuguese and Spanish. But it can be generalized to all the other languages from the link mentioned above.
 
-The comments one the main program are in French.
+The comments in the main program are in French.
 
 If there's any thing noticed wrong or in need to be clarified, well I implore you to send an email to : mehdi.belchiti@um5s.net.ma
