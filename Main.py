@@ -12,6 +12,7 @@ ersres
 @author: Mehdi
 """
 #importation des bibliotheques à utiliser:
+#importing all the needed modules
 import numpy as np
 import mesFonctions as fct
 from nltk.tokenize import sent_tokenize
@@ -30,20 +31,22 @@ import tkinter as tk
 
 
 #dictionnaire des langues avec leurs keys:
+#dictionary of languages and their keys:
 
 dict_langues = {1.0 : "Français", 2.0 : "Portugais" , 3.0 : "Italien" , 4.0 : "Espagnol"}
 
 
-
 #programme appelant:
+#Main program:
 if __name__ == "__main__":
 
 #fonction de la bibliotheque mesFonctions effectuant le cleaning:
+#method from 'mesFonctions module for the cleaning process:
     
-    textFrancais = fct.fileCleaning('D:/ENSIAS_M/2ème année/ProjetIA/txt/fr/ep-00-01-18.txt',"fracaisClean3")
-    textItalien = fct.fileCleaning('D:/ENSIAS_M/2ème année/ProjetIA/txt/it/ep-00-04-11.txt',"italienClean2")
-    textEspagnol = fct.fileCleaning('D:/ENSIAS_M/2ème année/ProjetIA/txt/es/ep-00-04-12.txt',"espagnolClean")
-    textPortugais = fct.fileCleaning('D:/ENSIAS_M/2ème année/ProjetIA/txt/pt/ep-00-01-18.txt',"portugaisClean")
+    textFrancais = fct.fileCleaning('txt/fr/ep-00-01-18.txt',"fracaisClean3")
+    textItalien = fct.fileCleaning('txt/it/ep-00-04-11.txt',"italienClean2")
+    textEspagnol = fct.fileCleaning('txt/es/ep-00-04-12.txt',"espagnolClean")
+    textPortugais = fct.fileCleaning('txt/pt/ep-00-01-18.txt',"portugaisClean")
     #print(text)
     listSentenceFrancais = sent_tokenize(textFrancais)
     listSentenceItalien = sent_tokenize(textItalien)
@@ -54,6 +57,7 @@ if __name__ == "__main__":
     
 
 #La fonction 'listSentenceEtiquete' permet d'etiqueter les textes:
+#function for labeling the each sentetence to its language:
 
     TFrancais = fct.listSetenceEtiquete(listSentenceFrancais,1)
     TPortugais = fct.listSetenceEtiquete(listSentencePortugais,2)
@@ -62,11 +66,13 @@ if __name__ == "__main__":
     
     
 #Pour regrouper tous les phrases des textes en une seule matrice. Cette matrice par la suite sera utilisée comme data set:
+#concatenate all the sentences to use it as one corpus for the training part:
     langues = np.concatenate((TFrancais,TPortugais,TItalien,TEspagnol))
 
     #print(langues)
 
 #preparer la dataset/dataFrame pour extraire les n-grams en utilisant le tf-idfVectorizer:
+#preparing the dataframe for the extaction of the n-gram letters, but before that we have to schuffle the sentences:
  
     languesModel=fct.melangerLangues(langues)
     df_langues = pd.DataFrame(languesModel)
@@ -82,12 +88,14 @@ if __name__ == "__main__":
     '''print(df_langues.head(10))'''
 
     #on voit si on a un nombre equitable de phrases pour chaque langue
+    #here we have to check that there is the same number of sentences for each language:
     '''
     clé_langue, nombrePhrase = np.unique(y_labels, return_counts=True)
     print("\n\n",dict(zip(clé_langue, nombrePhrase)))
     
     '''
 #Phase d'apprentissage:
+#Training set:
     
     
     #on fait le split du dataset, 0.7 pour l'entrainement et 0.3 pour le test:
@@ -99,7 +107,7 @@ if __name__ == "__main__":
     
     #TfIdfvectorizer donne des features qui seront les n-grams du dataset: 
     #algo = MLPClassifier(solver='sgd', hidden_layer_sizes=(12,),activation = 'identity')
-    '''algo = MLPClassifier(solver='lbfgs', hidden_layer_sizes=(100,), activation = 'relu')
+    algo = MLPClassifier(solver='lbfgs', hidden_layer_sizes=(100,), activation = 'relu')
     vectorizer = TfidfVectorizer(analyzer='char',token_pattern = r"(?u)\b\w+\b", ngram_range=(2,3))
     
     #On utilise le Pipeline pour combiner le return du TfidVectorizer avec le input de MLPClassifier:
@@ -115,7 +123,7 @@ if __name__ == "__main__":
     print("\n\nValidation set : ",cv_score)
     
     #Sauvegarder le modele:
-    '''
+    
     filename = 'D:/ENSIAS_M/2ème année/ProjetIA/modele'
     '''
     dump(classification_text, filename+".joblib")
@@ -123,8 +131,8 @@ if __name__ == "__main__":
     
     #Phase de test:
     
-    #modele = classification_text
-    modele = load(filename+".joblib")
+    modele = classification_text
+    #modele = load(filename+".joblib")
     
 
 
@@ -151,7 +159,7 @@ if __name__ == "__main__":
 
     
 #la precision de l'algo et le rapport de classification:
-    
+#the accuracy and the classification report    
 
     
     
@@ -162,6 +170,7 @@ if __name__ == "__main__":
     
 
 #phase de prediction:
+#predecting set:
 
     def predictionPhase():
         phrase = entry_field1.get()
