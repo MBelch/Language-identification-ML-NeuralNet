@@ -5,7 +5,7 @@ mesFonctions.py contains cleaning text files method and other methods used in th
 Before starting, it's necessary to download data related to the languages used for this project from :
 http://www.statmt.org/europarl/
 
-We only used like it's said before French, Italian, Portuguese and Spanish. But it can be generalized to all the other languages from the link mentioned above.
+We only used French, Italian, Portuguese and Spanish. But it can be generalized to all the other languages from the link mentioned above.
 
 The comments in the main program are in French.
 
