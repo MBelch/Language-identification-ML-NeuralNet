@@ -9,4 +9,4 @@ We only used like it's said before French, Italian, Portuguese and Spanish. But 
 
 The comments in the main program are in French.
 
-If there's any thing noticed wrong or in a need to be clarified, well, I implore you to send an email to : mehdi.belchiti@um5s.net.ma
+If there's anything noticed wrong or in a need to be clarified, I implore you to send an email to : mehdi.belchiti@um5s.net.ma
